@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tennis</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+  
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: "Open sans",Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("grass.png");
+  background-position: center;
+  background-repeat: repeat; 
+  background-size: cover;
+  position: static;
+
+}
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: auto;
+  left: auto;
+  color: white;
+}
+img{
+  position: relative;
+}
+
+.t01 {
+  width: 50%;
+}
+  
+table,th,td {
+  border: 1px solid rgb(0, 0, 0);
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+.t01 tr:nth-child(even) {
+  background-color: rgb(179, 212, 214);
+}
+.t01 tr:nth-child(odd) {
+ background-color: rgb(210, 232, 233);
+}
+.t01 th {
+  background-color: rgb(124, 161, 170);
+  color: rgb(0, 0, 0);
+}
+.t02{ 
+  width: 80%;
+  padding-left: 30%;
+  padding-top: 50%;
+  }
+.t02 tr:nth-child(even) {
+  background-color: rgb(179, 212, 214);
+}
+.t02 tr:nth-child(odd) {
+ background-color: rgb(210, 232, 233);
+}
+.t02 th {
+  background-color: rgb(124, 161, 170);
+  color: rgb(0, 0, 0);
+}
+.t02 caption{
+  text-align: center;
+  color: aliceblue;
+}
+sup {
+        vertical-align: super;
+        font-size: small;
+    }
+.t03{ 
+  width: 100%;
+
+  }
+.t03 tr:nth-child(even) {
+  background-color: rgb(179, 212, 214);
+}
+.t03 tr:nth-child(odd) {
+ background-color: rgb(210, 232, 233);
+}
+.t03 th {
+  background-color: rgb(124, 161, 170);
+  color: rgb(0, 0, 0);
+}
+.t03 caption{
+  text-align: center;
+  color: aliceblue;
+}
+.sum{
+  width: 50%;
+}
+.sum td {
+  text-align: center;
+}
+.sum tr:nth-child(even) {
+  background-color: rgb(179, 212, 214);
+}
+.sum tr:nth-child(odd) {
+ background-color: rgb(210, 232, 233);
+}
+.sum th {
+  background-color: rgb(124, 161, 170);
+  color: rgb(0, 0, 0);
+}
+.sum caption{
+  text-align: center;
+  color: aliceblue;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+.social{
+  text-align: center;
+  transform: translateX(50%);
+}
+h2{
+  color: rgb(252, 252, 252);
+  text-align: center;
+}
+.fa:hover {
+    opacity: 0.7;
+}
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-instagram {
+  background: #be0e0e;
+  color: white;
+}
+@media only screen and (min-width: 350px) {
+  .hero-text{width: 100%;}
+  .table1 {width: 100%;}
+  .table2 {width: 100%;}
+  .table3 {width: 100%;}
+  .social {width: 50%;}
+}
+@media only screen and (min-width: 700px) {
+  .hero-text{width: 100%;}
+  .table1 {width: 100%;}
+  .table2 {width: 100%;}
+  .table3 {width: 100%;}
+  .social {width: 50%;}
+}
+.t02 th,button {
+  cursor: pointer;
+}
+.t03 th,button {
+  cursor: pointer;
+}
+.t02 th:hover{
+  opacity: 0.8;
+}
+.t03 th:hover{
+  opacity: 0.8;
+}
+.hide tr td {
+  display: none;
+}
+.t02 button:hover{
+  color: black;
+  opacity: 0.8;
+}
+.t03 button:hover{
+  color: black;
+  opacity: 0.8;
+}
+.form{
+  text-align: center;
+}
+.form1{
+  text-align: center;
+}
+
+
+</style>
+  </head>
+    <body>
+      <div class="hero-text">
+        <h1 style="font-size:30px"><span id="result"></span></h1>
+        <img src="Roger_Federer.png" width="150" height="200" align="center" alt="federer photo"/>
+        
+      </div>
+      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+      <div class= "table1" > 
+        <table id="info" class="t01" align="center">
+          
+        </table>
+        
+      </div>
+      <br></br>
+      <div class= "table2">
+       
+        <table id="gram" class="t02" align="center">
+          <caption><h2><b>Αποτελέσματα Grand Slam</b></h2><br><button onclick="hide1()">Απόκρυψη Στηλών</button><button onclick="show1()">Εμφάνιση Στηλών</button>
+            <select id="colhide">
+                <option value="0" selected>Απόκρυψη μιας στήλης</option>
+                <option value="1" >Απόκρυψη Διοργάνωση</option>
+                <option value="2" >Απόκρυψη Τελικός</option>
+                <option value="3" >Απόκρυψη Έτος</option>
+                <option value="4" >Απόκρυψη Νίκες</option>
+                <option value="5" >Επαναφορά</option>
+              </select></br></caption>
+
+          
+          <tr>
+            <th onclick="sortTable2(0)">Διοργάνωση</th>
+            <th onclick="sortTable2(1)">Τελικός</th>
+            <th onclick="sortTable2(2)"> Έτος</th>
+            <th onclick="sortTable2(3)"> Νίκες</th>
+          </tr>
+        </table>
+        <div class="form">
+        <input type="text" id="newCellOneText" placeholder="Διοργάνωση"/>
+        <input type="text" id="newCellTwoText" placeholder="Τελικός"/>
+        <input type="text" id="newCellThreeText" placeholder="Έτος"/>
+        <input type="text" id="newCellFourText" placeholder="Νίκες"/>
+         <button type="reset" id="btn_reset" style="display: none;"></button>
+         <button type="button" id="btn_submit" onclick="addrowtable2()">Πρόσθεσε νέα γραμμή</button>
+        </div>
+        </div>
+      <br></br>
+      
+      <div class= "table3" >
+        
+        <table id="finals" class="t03" align="center" >
+          <caption><h2><b>Τελικοί Πρωταθλημάτων</b></h2>
+            <button onclick="hide2()">Απόκρυψη Στηλών</button><button onclick="show2()">Εμφάνιση Στηλών</button>
+            <select id="colhide2">
+                <option value="0" selected>Απόκρυψη μιας στήλης</option>
+                <option value="1" >Απόκρυψη Τελικός</option>
+                <option value="2" >Απόκρυψη Έτος</option>
+                <option value="3" >Απόκρυψη Διοργάνωση</option>
+                <option value="4" >Απόκρυψη Επιφάνεια</option>
+                <option value="5" >Απόκρυψη Αντίπαλος</option>
+                <option value="6" >Απόκρυψη Αποτέλεσμα</option>
+                <option value="7" >Επαναφορά</option>
+              </select>
+              </br></caption>
+          
+          <tr>
+            <th onclick="sortTable3(0)">Τελικός</th>
+            <th onclick="sortTable3(1)">Έτος</th>
+            <th onclick="sortTable3(2)">Διοργάνωση</th>
+            <th onclick="sortTable3(3)">Επιφάνεια</th>
+            <th onclick="sortTable3(4)">Αντίπαλος</th>
+            <th onclick="sortTable3(5)">Αποτέλεσμα</th>
+          </tr>
+          
+        </table>
+        <div class="form1">
+          <input type="text" id="newCell1" placeholder="Τελικός"/>
+          <input type="text" id="newCell2" placeholder="Έτος"/>
+          <input type="text" id="newCell3" placeholder="Διοργάνωση"/>
+          <input type="text" id="newCell4" placeholder="Επιφάνεια"/>
+          <input type="text" id="newCell5" placeholder="Αντίπαλος"/>
+          <input type="text" id="newCell6" placeholder="Αποτέλεσμα"/>
+           <button onclick="addrowtable3()">Πρόσθεσε νέα γραμμή</button>
+           <select id="opponentsfilter" oninput="filterTable()">
+            <option selected>Επιλογή ενός αντιπάλου</option>
+            <option>Νόβακ Τζόκοβιτσ</option>
+            <option>Ραφαέλ Ναδάλ</option>
+            <option>Αντρέ Αγκάσι</option>
+            <option>Λέιτον Χιούιτ</option>
+            <option>Ντέιβιτ Ναλμπάντιαν</option>
+            <option>Τζέιμς Μπλέικ</option>
+            <option>Ντέιβιτ Φερέρ</option>
+            <option>Τζο-Ουίλφριντ Τσόνγκα</option>
+            <option>Μάριν Σίλιτς</option>
+            <option>Επαναφορά</option>
+          </select>
+        </div>
+        <br></br><br></br>
+        <table class="sum" align="center">
+          <tr>
+            <th>Νίκες σε Πρωταθλήματα</th>
+            <th>Ήττες σε Πρωταθλήματα</th>
+            <th>Σύνολο Νικών Gram Slam</th>
+          </tr>
+          <tr>
+            <td><span id="winfinals"></span></td>
+          <td><span id="losefinals"></span></td>
+          <td><span id="sumwins"></span></td>
+        </tr>
+        </table>
+      </div>
+        
+      <br></br>
+      <br></br>
+      <div class="social" >
+        <h2>Social Media</h2>
+        <span id="insta" ><a href="https://www.instagram.com/rogerfederer/" target="_blank"><i  class="fa fa-instagram" ></i></a></span>
+        <span id="fb" ><a href="https://www.facebook.com/Federer" target="_blank"><i  class="fa fa-facebook" ></i></a></span>
+      </div>
+ 
+  </body>
+
+        <script>
+
+        var array1=[["Όνομα","Ρότζερ Φέντερερ"],
+                   ["Ημερομηνία Γέννησης","08/08/1981 (39 ετών)"],
+                   ["Ύψος","1,86 μ."],
+                   ["Επαγγελματίας από","1998"],
+                   ["Τίτλοι Καριέρας","103"],
+                   ["Παγκόσμια Κατάταξη","Νο3"]]
+
+            table1 = document.getElementById("info");
+            for(var i = 0; i < array1.length; i++)
+           {
+               var newRow = table1.insertRow(table1.length);
+               for(var j = 0; j < array1[i].length; j++)
+               {
+                   var cell = newRow.insertCell(j);
+                   cell.innerHTML = array1[i][j];
+               }
+           }
+         
+           var array2=[["Αυστραλιανό Όπεν","Νικητής","2004, 2006, 2007, 2010, 2017, 2018","6"],
+                   ["Γαλλινό Όπεν","Νικητής","2009","1"],
+            ["Γουίμπλετον","Νικητής","2003, 2004, 2005, 2006, 2007, 2009, 2012, 2017","8"],
+            ["Αμερικάνικο Όπεν","Νικητής","2004, 2005, 2006, 2007, 2008","5"],
+            ["Τελικοί τουρνέ ATP","Νικητής","2003, 2004, 2006, 2007, 2010, 2011","6"],
+            ["Ολυμπιακοί Αγώνες","Φιναλίστ (Αργυρό μετάλιο)","2012","-"]]
+
+            table2 = document.getElementById("gram");
+            for(var i = 0; i < array2.length; i++)
+           {
+               var newRow = table2.insertRow(table2.length);
+               for(var j = 0; j < array2[i].length; j++)
+               {
+                   var cell = newRow.insertCell(j);
+                   cell.innerHTML = array2[i][j];
+               }
+           }
+
+           table2 = document.getElementById("gram");
+           if(localStorage.tableDatag==undefined){localStorage.tableDatag=table2.innerHTML};
+           table2.innerHTML = localStorage.tableDatag;     
+     function addrowtable2() {
+      var len = array2.length
+      var tableg = document.getElementById("gram");
+  var row = tableg.insertRow(len+1);
+  var cell1g = row.insertCell(0);
+  var cell2g = row.insertCell(1);
+  var cell3g = row.insertCell(2);
+  var cell4g = row.insertCell(3);
+  cell1g.innerHTML = document.querySelector('#newCellOneText').value;
+  cell2g.innerHTML = document.querySelector('#newCellTwoText').value;
+  cell3g.innerHTML = document.querySelector('#newCellThreeText').value;
+  cell4g.innerHTML = document.querySelector('#newCellFourText').value;
+  localStorage.tableDatag=tableg.innerHTML; 
+}
+
+$(function(){
+    $('#btn_submit').click(function(){
+       $('#btn_reset').click();  
+       document.getElementById("newCellOneText").value=""
+       document.getElementById("newCellTwoText").value=""
+       document.getElementById("newCellThreeText").value=""
+       document.getElementById("newCellFourText").value=""
+});
+    });
+
+
+
+        var array3=[["Νικητής","2003","Tennis Masters Cup","Σκληρό","Αντρέ Αγκάσι","6-3, 6-0, 6-4"],
+            ["Νικητής","2004","Tennis Masters Cup","Σκληρό","Λέιτον Χιούιτ","6-3, 6-2"],
+            ["Φιναλίστ","2005","Tennis Masters Cup","Χαλί","Ντέιβιτ Ναλμπάντιαν","7-6<sup>(7-4)</sup>, 7-6<sup>(13-11)</sup>, 2-6, 1-6, 6-7<sup>(3-7)</sup>"],
+            ["Νικητής","2006","Tennis Masters Cup","Σκληρό","Τζέιμς Μπλέικ","6-0, 6-3, 6-4"],
+            ["Νικητής","2007","Tennis Masters Cup","Σκληρό","Ντέιβιτ Φερέρ","6-2, 6-3, 6-2"],
+            ["Νικητής","2010","ATP Τελικός","Σκληρό","Ραφαέλ Ναδάλ","6-3, 3-6, 6-1"],
+            ["Νικητής","2011","ATP Τελικός","Σκληρό","Τζο-Ουίλφριντ Τσόνγκα","6-3, 6-7<sup>(6-8)</sup>, 6-3"],
+            ["Φιναλίστ","2012","ATP Τελικός","Σκληρό","Νόβακ Τζόκοβιτσ","6-7<sup>(6-8)</sup>,5-7"],
+            ["Νικητής","2014","ATP Τελικός","Σκληρό","Νόβακ Τζόκοβιτσ","walkover"],
+            ["Φιναλίστ","2015","ATP Τελικός","Σκληρό","Νόβακ Τζόκοβιτσ","3-6, 4-6"]]
+
+            table3 = document.getElementById("finals");
+            for(var i = 0; i < array3.length; i++)
+           {
+               var newRow = table3.insertRow(table3.length);
+               for(var j = 0; j < array3[i].length; j++)
+               {
+                   var cell = newRow.insertCell(j);
+                   cell.innerHTML = array3[i][j];
+               }
+           }
+
+           table3 = document.getElementById("finals"); 
+if(localStorage.tableDataf==undefined){localStorage.tableDataf=table3.innerHTML};
+           table3.innerHTML = localStorage.tableDataf;      
+function addrowtable3() {
+  var len = array3.length
+  var tablef = document.getElementById("finals");
+  var row = tablef.insertRow(len+1);
+  var cell1f = row.insertCell(0);
+  var cell2f = row.insertCell(1);
+  var cell3f = row.insertCell(2);
+  var cell4f = row.insertCell(3);
+  var cell5f = row.insertCell(4);
+  var cell6f = row.insertCell(5);
+  cell1f.innerHTML = document.querySelector('#newCell1').value;
+  cell2f.innerHTML = document.querySelector('#newCell2').value;
+  cell3f.innerHTML = document.querySelector('#newCell3').value;
+  cell4f.innerHTML = document.querySelector('#newCell4').value;
+  cell5f.innerHTML = document.querySelector('#newCell5').value;
+  cell6f.innerHTML = document.querySelector('#newCell6').value;
+  localStorage.tableDataf=tablef.innerHTML;
+}
+$(function(){
+    $('#btn_submit').click(function(){
+       $('#btn_reset').click();  
+       document.getElementById("newCell1").value=""
+       document.getElementById("newCell2").value=""
+       document.getElementById("newCell3").value=""
+       document.getElementById("newCell4").value=""
+       document.getElementById("newCell5").value=""
+       document.getElementById("newCell6").value=""
+});
+    });
+    function filterTable() {
+  let dropdown, table, rows, cells, opponent, filter;
+  dropdown = document.getElementById("opponentsfilter");
+  table = document.getElementById("finals");
+  rows = table.getElementsByTagName("tr");
+  filter = dropdown.value;
+
+  for (let row of rows) { 
+    cells = row.getElementsByTagName("td");
+    opponent = cells[4] || null; 
+    if (filter === "Επαναφορά" || !opponent || (filter === opponent.textContent)) {
+      row.style.display = "";
+    }
+    else {
+      row.style.display = "none";
+    }
+  }
+}
+
+
+           function sortTable2(n) {
+             var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("gram");
+            switching = true;
+            dir = "asc"; 
+            while (switching) {
+                 switching = false;
+                 rows = table.rows;
+                 for (i = 1; i < (rows.length - 1); i++) {
+                   shouldSwitch = false;
+                  x = rows[i].getElementsByTagName("td")[n];
+                  y = rows[i + 1].getElementsByTagName("td")[n];
+      
+                  if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch= true;
+                        break;
+                   }
+                  } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                     }
+                     
+                 }
+              }
+              if (shouldSwitch) {
+                       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                       switching = true;
+                       switchcount ++;      
+                  } else {
+                       if (switchcount == 0 && dir == "asc") {
+                           dir = "desc";
+                          switching = true;
+                     }
+                     
+             
+                    }
+                    
+  }
+}
+function sortTable3(n) {
+             var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("finals");
+            switching = true;
+            dir = "asc"; 
+            while (switching) {
+                 switching = false;
+                 rows = table.rows;
+                 for (i = 1; i < (rows.length - 1); i++) {
+                   shouldSwitch = false;
+                  x = rows[i].getElementsByTagName("td")[n];
+                  y = rows[i + 1].getElementsByTagName("td")[n];
+      
+                  if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch= true;
+                        break;
+                   }
+                  } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                     }
+                     
+                 }
+              }
+              if (shouldSwitch) {
+                       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                       switching = true;
+                       switchcount ++;      
+                  } else {
+                       if (switchcount == 0 && dir == "asc") {
+                           dir = "desc";
+                          switching = true;
+                     }
+                    
+             
+                    }
+                    
+  }
+}
+var columnhide = document.getElementById("colhide");
+columnhide.addEventListener("change", generateData2);
+  function generateData2(event) {
+    if (columnhide.value == '1') {
+      hideCol0();
+    }else if(columnhide.value == '2'){
+      hideCol1();
+    }else if(columnhide.value == '3'){
+      hideCol2();
+    }else if(columnhide.value == '4'){
+      hideCol3();
+    }else if(columnhide.value == '5'){
+      restore();
+    }
+  }
+
+      function hideCol0() {
+        var col = 0;
+    
+        var tbl = document.getElementById("gram");
+        if (tbl != null) {
+            for (var i = 0; i < tbl.rows.length; i++) {
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[j].style.display = "";
+                    if (j == col)
+                        tbl.rows[i].cells[j].style.display = "none";
+                }
+            }
+        }
+    }
+    function hideCol1() {
+      var col = 1;
+  
+      var tbl = document.getElementById("gram");
+      if (tbl != null) {
+          for (var i = 0; i < tbl.rows.length; i++) {
+              for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                  tbl.rows[i].cells[j].style.display = "";
+                  if (j == col)
+                      tbl.rows[i].cells[j].style.display = "none";
+              }
+          }
+      }
+  }
+  function hideCol2() {
+    var col = 2;
+
+    var tbl = document.getElementById("gram");
+    if (tbl != null) {
+        for (var i = 0; i < tbl.rows.length; i++) {
+            for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                tbl.rows[i].cells[j].style.display = "";
+                if (j == col)
+                    tbl.rows[i].cells[j].style.display = "none";
+            }
+        }
+    }
+}
+function hideCol3() {
+  var col = 3;
+
+  var tbl = document.getElementById("gram");
+  if (tbl != null) {
+      for (var i = 0; i < tbl.rows.length; i++) {
+          for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+              tbl.rows[i].cells[j].style.display = "";
+              if (j == col)
+                  tbl.rows[i].cells[j].style.display = "none";
+          }
+      }
+  }
+}
+ 
+function restore(){
+  var tbl = document.getElementById("gram");
+  if (tbl != null) {
+      for (var i = 0; i < tbl.rows.length; i++) {
+          for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+              tbl.rows[i].cells[j].style.display = "";
+}
+      }
+    }
+  }
+  var columnhide2 = document.getElementById("colhide2");
+  columnhide2.addEventListener("change", generateData3);
+  function generateData3(event) {
+    if (columnhide2.value == '1') {
+      hideColumn0();
+    }else if(columnhide2.value == '2'){
+        hideColumn1();
+    }else if(columnhide2.value == '3'){
+        hideColumn2();
+    }else if(columnhide2.value == '4'){
+        hideColumn3();
+    }else if(columnhide2.value == '5'){
+        hideColumn4();
+    }else if(columnhide2.value == '6'){
+        hideColumn5();
+    }else if(columnhide2.value == '7'){
+      restore2();
+    }
+  }
+  function hideColumn0() {
+    var col = 0;
+
+    var tbl = document.getElementById("finals");
+    if (tbl != null) {
+        for (var i = 0; i < tbl.rows.length; i++) {
+            for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                tbl.rows[i].cells[j].style.display = "";
+                if (j == col)
+                    tbl.rows[i].cells[j].style.display = "none";
+            }
+        }
+    }
+}
+function hideColumn1() {
+  var col = 1;
+
+  var tbl = document.getElementById("finals");
+  if (tbl != null) {
+      for (var i = 0; i < tbl.rows.length; i++) {
+          for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+              tbl.rows[i].cells[j].style.display = "";
+              if (j == col)
+                  tbl.rows[i].cells[j].style.display = "none";
+          }
+      }
+  }
+}
+function hideColumn2() {
+  var col = 2;
+
+  var tbl = document.getElementById("finals");
+  if (tbl != null) {
+      for (var i = 0; i < tbl.rows.length; i++) {
+          for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+              tbl.rows[i].cells[j].style.display = "";
+              if (j == col)
+                  tbl.rows[i].cells[j].style.display = "none";
+          }
+      }
+  }
+}
+function hideColumn3() {
+  var col = 3;
+
+  var tbl = document.getElementById("finals");
+  if (tbl != null) {
+      for (var i = 0; i < tbl.rows.length; i++) {
+          for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+              tbl.rows[i].cells[j].style.display = "";
+              if (j == col)
+                  tbl.rows[i].cells[j].style.display = "none";
+          }
+      }
+  }
+}
+function hideColumn4() {
+  var col = 4;
+
+  var tbl = document.getElementById("finals");
+  if (tbl != null) {
+      for (var i = 0; i < tbl.rows.length; i++) {
+          for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+              tbl.rows[i].cells[j].style.display = "";
+              if (j == col)
+                  tbl.rows[i].cells[j].style.display = "none";
+          }
+      }
+  }
+}
+function hideColumn5() {
+  var col = 5;
+
+  var tbl = document.getElementById("finals");
+  if (tbl != null) {
+      for (var i = 0; i < tbl.rows.length; i++) {
+          for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+              tbl.rows[i].cells[j].style.display = "";
+              if (j == col)
+                  tbl.rows[i].cells[j].style.display = "none";
+          }
+      }
+  }
+}
+function restore2(){
+  var tbl = document.getElementById("finals");
+  if (tbl != null) {
+      for (var i = 0; i < tbl.rows.length; i++) {
+          for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+              tbl.rows[i].cells[j].style.display = "";
+}
+      }
+    }
+  }
+var tab1;
+document.addEventListener('DOMContentLoaded', function() {
+   tab1 = document.getElementById('gram');
+});
+
+function hide1() {
+  tab1.classList.add('hide');
+}
+
+function show1() {
+  tab1.classList.remove('hide');
+}
+var tab2;
+document.addEventListener('DOMContentLoaded', function() {
+   tab2 = document.getElementById('finals');
+});
+
+function hide2() {
+  tab2.classList.add('hide');
+}
+
+function show2() {
+  tab2.classList.remove('hide');
+}
+var table = document.getElementById("gram"), sumVal = 0;
+
+            for(var i = 1; i < table.rows.length; i++)
+            {
+              if (table.rows[i].cells[3].innerHTML<10){
+                sumVal = sumVal + parseInt(table.rows[i].cells[3].innerHTML);
+          
+              }
+            }
+            document.getElementById("sumwins").innerHTML = sumVal;
+            console.log(sumVal);
+var sumtable2 = document.getElementById("finals"), wins = 0,lose=0;
+            
+            for(var i = 1; i < sumtable2.rows.length; i++)
+            {
+                   if (sumtable2.rows[i].cells[0].innerHTML=="Νικητής"){
+                        wins= wins + 1;
+                      }
+                  if (sumtable2.rows[i].cells[0].innerHTML=="Φιναλίστ"){
+                    lose=lose+1;
+                  }
+     }
+     document.getElementById("winfinals").innerHTML =  wins;
+     document.getElementById("losefinals").innerHTML =  lose;
+     console.log(wins);
+     console.log(lose);
+     document.getElementById("result").innerHTML=localStorage.getItem("textvalue");
+   
+
+     
+
+      </script>
+</html>

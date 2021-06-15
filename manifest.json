@@ -1,0 +1,18 @@
+ {
+    "name": "Tennis",
+    "short_name":"Ροτζερ Φεντερερ",
+    "start_url": "/index.html",
+    "background_color":"#99FFCC",
+    "theme_color": "#99FFCC",
+    "orientation": "portrait-primary",
+    "display": "standalone",
+    "icons":[
+        {
+            "src": "logo.png",
+            "type":"image/png",
+            "sizes": "225x225"
+
+        }
+    ]
+
+}
